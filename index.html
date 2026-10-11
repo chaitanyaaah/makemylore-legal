@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#FFFFFF">
+<script>(function(){try{if(localStorage.getItem('fl-theme')==='dark')document.documentElement.dataset.theme='dark';}catch(e){}})();</script>
+
+<title>Find Lore · Find your people. Find your plan.</title>
+<meta name="description" content="Real plans in your city. Take a seat, meet your people, and keep the story after.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Find Lore">
+<meta property="og:title" content="Find Lore · Find your people. Find your plan.">
+<meta property="og:description" content="Your next favourite people are one plan away.">
+
+<link rel="preload" as="image" href="./assets/screens/demo-light/home.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Find Lore","applicationCategory":"SocialNetworkingApplication","operatingSystem":"iOS, Android","description":"Real plans in your city. Take a seat, meet your people, and keep the story after.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2309090B'/%3E%3Crect x='4' y='9' width='24' height='14' rx='4' fill='%23B8A1FF'/%3E%3Ccircle cx='18.5' cy='9' r='2.2' fill='%2309090B'/%3E%3Ccircle cx='18.5' cy='23' r='2.2' fill='%2309090B'/%3E%3Ccircle cx='23.5' cy='16' r='2.4' fill='%2309090B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@1&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+<style>
+/* One white page, black assets, lavender where it means something; sections are the
+   product's own objects: a ticket, the lore band, the passport, the tinted cards. */
+:root{
+ --bg:#FFFFFF;--surface:#F7F5FA;--ink:#100D18;--muted:#46414F;--faint:#5A5566;
+ --line:#D1CCDA;--line-strong:#B1ABBE;
+ --accent:#5B3BC4;--accent-text:#5B3BC4;
+ --cta-bg:#100D18;--cta-ink:#FFFFFF;
+ --press:#5B3BC41C;--ripple-ink:#5B3BC433;--phone-shadow:0 30px 60px #26144C24;
+ --chip-well:#F1EEF6;--chip-sel:#FFFFFF;--chip-shadow:0 2px 10px #26144C21;--glow:#B8A1FF4D;
+ --hangout:#E96793;--event:#67B3E9;--trip:#67E9D8;--workshop:#E9C967;--sport:#67E993;--ride:#E99D67;--movie:#E967E9;
+ --display:'Bricolage Grotesque',Arial,sans-serif;--serif:'Fraunces',Georgia,serif;--body:'Inter',Arial,sans-serif;
+ color-scheme:light;
+}
+html[data-theme=dark]{
+ --bg:#09090B;--surface:#121216;--ink:#F7F5FA;--muted:#C2BFCB;--faint:#A3A0AD;
+ --line:#312F39;--line-strong:#48414F;
+ --accent:#B8A1FF;--accent-text:#C4B2FF;
+ --cta-bg:#B8A1FF;--cta-ink:#170D30;
+ --press:#B8A1FF24;--ripple-ink:#B8A1FF3D;--phone-shadow:0 34px 70px #00000080;
+ --chip-well:#141318;--chip-sel:#26242E;--chip-shadow:0 2px 10px #00000066;--glow:#B8A1FF21;
+ color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;overflow-x:clip;background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);font-weight:450;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background .35s,color .35s}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+button,a{-webkit-tap-highlight-color:transparent}
+img{display:block;width:100%;height:auto;object-fit:cover}
+h1,h2,h3,p{margin:0}
+p,li,summary{text-wrap:pretty}
+h2{font:780 clamp(34px,4.6vw,56px)/1.03 var(--display);letter-spacing:-.04em;text-wrap:balance}
+h3{font:720 20px/1.2 var(--display);letter-spacing:-.02em}
+em.turn{font:italic 640 1.03em/1 var(--serif);font-optical-sizing:auto;letter-spacing:0;color:var(--accent-text)}
+::selection{background:var(--accent);color:var(--bg)}
+.skip{position:fixed;left:20px;top:-80px;z-index:100;background:var(--cta-bg);color:var(--cta-ink);padding:12px;border-radius:8px}
+.skip:focus{top:10px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+main{overflow-x:clip}
+.wrap{width:min(1100px,calc(100% - 48px));margin-inline:auto}
+
+.bar{position:sticky;top:0;z-index:60;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.bar.scrolled{background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);box-shadow:0 1px 0 var(--line)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(var(--p,0));opacity:0;transition:opacity .3s}
+.bar.scrolled .progress{opacity:1}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;transition:padding .3s}
+.bar.scrolled .top{padding:10px 0}
+.logo{display:flex;gap:11px;align-items:center;white-space:nowrap;min-height:44px;font:780 20px var(--display);letter-spacing:-.03em}
+.logo em{font:italic 680 1.12em/1 var(--serif);letter-spacing:-.01em;color:var(--accent-text)}
+.mark{display:block;width:34px;height:23px;flex:none}
+.top-right{display:flex;align-items:center;gap:10px}
+.theme-toggle{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-size:12px;font-weight:500;color:var(--muted);min-height:38px}
+.theme-toggle:before{content:'';width:9px;height:9px;border-radius:50%;background:var(--ink);flex:none}
+.theme-toggle:hover{color:var(--ink)}
+.theme-toggle{white-space:nowrap;min-height:44px}
+
+.stage{text-align:center;padding:54px 0 20px}
+/* The headline is the app's own pair: the grotesque states "Go find your", the
+   Instrument Serif italic turns it with the word cycling people, plan, lore. */
+h1{font:800 clamp(56px,9vw,128px)/1 var(--display);letter-spacing:-.042em;margin:0 0 24px;text-wrap:balance;font-optical-sizing:auto}
+.turnwrap{position:relative;display:inline-block}
+#turnword{perspective:500px;font:italic 400 1.1em/1 'Instrument Serif',Georgia,serif;letter-spacing:-.012em;font-synthesis:none}
+.motion-ready #turnword i{display:inline-block;animation:letterin .6s cubic-bezier(.19,.9,.22,1) both}
+#turnword i{display:inline-block;font-style:italic}
+@keyframes letterin{from{opacity:0;transform:translateY(.35em) rotateX(72deg)}}
+/* lore is the finale: every letter stamps down the way SEAT CONFIRMED lands in the app,
+   oversized, tilted, then settled, under a burst of torn ticket scraps. */
+.motion-ready #turnword.lorefx i{animation:stampin .62s cubic-bezier(.17,1.1,.3,1) both}
+@keyframes stampin{0%{opacity:0;transform:scale(2.4) rotate(-9deg)}62%{opacity:1;transform:scale(.95) rotate(1.6deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+#turnword.lorefx{color:var(--accent);text-shadow:0 14px 44px #B8A1FF59}
+#burst{position:absolute;inset:-20%;pointer-events:none}
+.scrap{position:absolute;left:50%;top:55%;width:10px;height:15px;border-radius:3px;opacity:0;animation:scrapfly .8s cubic-bezier(.16,.8,.3,1) both}
+@keyframes scrapfly{0%{opacity:0;transform:translate(-50%,-50%) rotate(0deg) scale(.4)}14%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rz)) scale(1)}}
+.rev{display:block;overflow:hidden}
+.rev>span{display:block}
+.motion-ready .rev>span{animation:lift .85s cubic-bezier(.19,.9,.22,1) both;animation-delay:var(--d,0s)}
+@keyframes lift{from{transform:translateY(112%)}}
+.motion-ready .fx{animation:rise2 .6s ease-out both;animation-delay:var(--d,0s)}
+@keyframes rise2{from{opacity:0;transform:translateY(12px)}}
+#turnword{display:inline-block;transition:opacity .3s ease-out,transform .3s ease-out}
+#turnword.out{opacity:0;transform:translateY(10px);transition-duration:.2s}
+.sub{max-width:500px;margin-inline:auto;font-size:18px;font-weight:500;line-height:1.6;color:var(--muted)}
+.note{margin-top:18px;font-size:12px;color:var(--faint)}
+
+.spread{position:relative}
+.objs{position:absolute;inset:0;pointer-events:none;z-index:1}
+.obj{position:absolute;transform:rotate(var(--r,0deg));box-shadow:0 18px 44px #26144C1C}
+.motion-ready .obj{animation:objin .8s var(--d,0s) cubic-bezier(.19,.9,.22,1) both,drifty var(--dur,7s) 1.8s ease-in-out infinite alternate}
+@keyframes objin{from{opacity:0;transform:rotate(var(--r,0deg)) translateY(26px) scale(.92)}}
+@keyframes drifty{to{transform:rotate(var(--r,0deg)) translateY(-9px)}}
+.obj.t{left:1.5%;top:-176px;width:214px;background:#FFF;color:#100D18;border:1px solid #E5E1EC;border-radius:16px;padding:14px 16px 11px}
+.obj.t small{display:flex;align-items:center;gap:7px;font:600 9px var(--body);letter-spacing:.16em;text-transform:uppercase;color:#8E8A99}
+.obj.t small:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sport)}
+.obj.t strong{display:block;font:650 18px var(--display);letter-spacing:-.02em;margin:7px 0 10px}
+.obj.t .tear-row{display:block;height:2px;background-image:radial-gradient(circle,#B1ABBE 1px,transparent 1.2px);background-size:9px 2px;background-repeat:repeat-x;margin-bottom:9px}
+.obj.t .adm{display:flex;align-items:center;justify-content:space-between;font:600 8.5px var(--body);letter-spacing:.22em;color:#8E8A99;text-transform:uppercase}
+.obj.t .adm i{width:15px;height:15px;border-radius:50%;background:#EFEBF5;border:1px solid #D1CCDA}
+.obj.p{right:2%;top:-190px;width:156px;background:#FFF;border:1px solid #E5E1EC;border-radius:6px;padding:9px 9px 11px}
+.obj.p img{height:102px;border-radius:2px}
+.obj.p em{display:block;font:italic 400 14px var(--serif);color:#100D18;margin-top:9px;text-align:center}
+.obj.s{left:6%;bottom:17%;border:2.5px solid var(--accent-text);color:var(--accent-text);border-radius:11px;padding:9px 15px;font:650 13px var(--display);letter-spacing:.08em;text-transform:uppercase;box-shadow:none;background:var(--bg)}
+.obj.pin{right:8%;bottom:22%;width:64px;display:flex;flex-direction:column;align-items:center;box-shadow:none}
+.obj.pin .head{width:56px;height:56px;border-radius:50%;border:3px solid #FFF;overflow:hidden;box-shadow:0 10px 26px #26144C33}
+.obj.pin .head img{height:100%}
+.obj.pin .tail{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid #FFF;margin-top:-2px}
+.obj.pin .price{margin-top:3px;background:#FFF;border:1px solid #E5E1EC;border-radius:99px;padding:2px 10px;font:650 11px var(--display);color:#5B3BC4;box-shadow:0 8px 20px #26144C22}
+.obj.b{left:3.5%;top:47%;background:#121216;color:#F7F5FA;border:1px solid #312F39;border-radius:16px 16px 16px 5px;padding:10px 15px;font-size:13px;max-width:185px}
+.obj.b .react{display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:#1B1B21;border:1px solid #312F39;border-radius:99px;padding:2px 9px;font-size:11px;color:#A9A6B2}
+@media(max-width:900px){.obj{display:none}.obj.s{display:block;left:auto;right:max(10px,calc(50% - 200px));top:-6px;bottom:auto;transform:rotate(var(--r)) scale(.78)}}
+.device{display:flex;flex-direction:column;align-items:center;gap:20px;padding:26px 0 10px;position:relative;perspective:1300px;z-index:2}
+.device:before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:min(620px,120vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--glow) 0%,transparent 62%);z-index:-1;pointer-events:none}
+/* iPhone geometry: thin uniform bezels, the screen edge to edge, the island floating
+   over a synthesized status bar that is part of the screenshot itself. */
+.phone{display:block;position:relative;width:min(332px,84vw,calc((100svh - 28px) * .43));background:#17161C;border:1px solid #2E2D38;border-radius:54px;padding:12px;box-shadow:var(--phone-shadow),inset 0 0 0 2px #0B0A10;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));will-change:transform}
+.phone:before{content:'';position:absolute;top:23px;left:50%;transform:translateX(-50%);width:94px;height:27px;background:#050507;border-radius:15px;z-index:2}
+/* Side keys sit flush on the frame edge as subtle highlights, never detached tabs. */
+.hwbtn{position:absolute;width:2.5px;border-radius:2px;background:#3E3B49}
+.hwbtn.a{left:-2px;top:132px;height:28px}
+.hwbtn.b{left:-2px;top:176px;height:56px}
+.hwbtn.c{right:-2px;top:164px;height:80px}
+.sheen{position:absolute;inset:12px;border-radius:43px;pointer-events:none;z-index:2;background:radial-gradient(340px circle at var(--mx,28%) var(--my,16%),#FFFFFF14,transparent 58%);opacity:0;transition:opacity .35s}
+.device:hover .sheen{opacity:1}
+.phone img{aspect-ratio:540/1238;border-radius:43px}
+.phone,.phone img{user-select:none;-webkit-user-select:none}
+.phone img{-webkit-user-drag:none}
+.motion-ready .phone{animation:pop .9s cubic-bezier(.19,.9,.22,1) both;animation-delay:.3s}
+@keyframes pop{from{opacity:0;transform:translateY(36px) scale(.97)}}
+@media(hover:none){.motion-ready .phone{animation:pop .9s cubic-bezier(.19,.9,.22,1) both,bob 7s 2s ease-in-out infinite;animation-delay:.3s,2s}}
+@keyframes bob{0%,100%{transform:none}50%{transform:translateY(-9px)}}
+.hotspots{position:absolute;inset:12px;border-radius:43px;overflow:hidden;z-index:3}
+.spot{position:absolute;background:transparent;border:0;padding:0;cursor:pointer;border-radius:12px;touch-action:manipulation}
+.spot:active{background:var(--press)}
+.spot:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.ripple{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--ripple-ink);transform:translate(-50%,-50%) scale(.4);pointer-events:none;z-index:4;animation:ripple .38s ease-out forwards}
+@keyframes ripple{to{transform:translate(-50%,-50%) scale(1.9);opacity:0}}
+.hint{font-size:12px;color:var(--faint);display:flex;align-items:center;gap:8px;margin:0}
+.hint:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;background:var(--chip-well);border:1px solid var(--line);border-radius:26px;padding:6px;max-width:min(620px,94vw)}
+.chip{background:none;border:0;border-radius:20px;padding:9px 16px;font-size:12.5px;font-weight:500;color:var(--muted);min-height:38px;transition:background .2s,color .2s,box-shadow .2s;touch-action:manipulation}
+.chip:hover{color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--chip-sel);color:var(--ink);box-shadow:var(--chip-shadow);font-weight:600}
+
+.section{padding:96px 0 0}
+.eyebrow{font:600 11px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:10px}
+.eyebrow:before{content:'';height:6px;width:6px;border-radius:50%;background:var(--accent)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin:18px 0 44px}
+.section-head p{max-width:340px;color:var(--muted)}
+.reveal{opacity:1}
+.motion-ready .reveal.visible{animation:rise2 .7s cubic-bezier(.2,.7,.2,1) both}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.step{border-top:1px solid var(--line);padding-top:24px}
+.step-number{font:650 38px var(--display);color:var(--line-strong);line-height:1;margin-bottom:20px}
+.step h3{margin-bottom:12px}
+.step p{font-size:14px;color:var(--muted)}
+.seeit{display:inline-flex;align-items:center;gap:8px;margin-top:16px;min-height:40px;padding:0;background:none;border:0;font:600 13px var(--body);color:var(--ink)}
+.seeit:after{content:'';width:15px;height:15px;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .25s}
+.seeit:hover{color:var(--accent-text)}.seeit:hover:after{transform:translateY(-3px)}
+
+/* The ticket section is the object itself: QR, perforation, stub, punch. White card in
+   both themes, because a ticket is paper. */
+.ticket-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.bigticket{background:#FFF;color:#100D18;border:1px solid #E5E1EC;border-radius:22px;padding:24px;max-width:360px;margin-inline:auto;box-shadow:0 26px 60px #26144C1F;transform:rotate(-2deg)}
+.bigticket .bt-head{display:flex;justify-content:space-between;font:600 9.5px var(--body);letter-spacing:.2em;text-transform:uppercase;color:#8E8A99}
+.bigticket h3{font-size:22px;margin:12px 0 2px}
+.bigticket .bt-sub{font-size:12px;color:#5F5A6B}
+.bigticket .qr{width:148px;margin:20px auto;display:block}
+.bigticket .bt-tear{height:2px;background-image:radial-gradient(circle,#B1ABBE 1.1px,transparent 1.3px);background-size:10px 2px;background-repeat:repeat-x;margin:4px -24px 14px;position:relative}
+.bigticket .bt-tear:before,.bigticket .bt-tear:after{content:'';position:absolute;top:-10px;width:20px;height:20px;border-radius:50%;background:var(--bg);transition:background .35s}
+.bigticket .bt-tear:before{left:-10px}.bigticket .bt-tear:after{right:-10px}
+.bigticket .bt-foot{display:flex;align-items:center;justify-content:space-between;font:600 9.5px var(--body);letter-spacing:.24em;text-transform:uppercase;color:#8E8A99}
+.bigticket .punch{width:18px;height:18px;border-radius:50%;background:var(--bg);border:1px solid #B1ABBE;transition:background .35s}
+.ticket-copy h2{margin-bottom:16px}
+.ticket-copy p{color:var(--muted);max-width:440px;margin-bottom:14px}
+/* Copy as fragments, not prose: one italic pull-line where a paragraph used to sit. */
+.pull{font:italic 560 clamp(20px,2.1vw,26px)/1.4 var(--serif);color:var(--ink);max-width:420px}
+.pull em{font-style:italic;color:var(--accent-text)}
+.lore-chips{display:flex;gap:8px;margin:18px 0 16px;flex-wrap:wrap}
+.lore-chips button{background:none;border:1px solid #312F39;border-radius:99px;padding:8px 16px;min-height:38px;font:500 13px var(--body);color:#C2BFCB;transition:background .2s,color .2s,border-color .2s}
+.lore-chips button:hover{color:#F7F5FA;border-color:#48414F}
+.lore-chips button[aria-pressed=true]{background:#F7F5FA;color:#100D18;border-color:#F7F5FA}
+.lore .lore-share{margin-top:14px;font-size:14px;color:#A9A6B2;max-width:380px}
+.tick-list{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:12px}
+.tick-list li{display:flex;gap:11px;align-items:start;font-size:14px;color:var(--muted)}
+.tick-list li:before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:7px}
+
+/* The lore band is the inverted card: dark in both themes, one black object full of memory. */
+.lore{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;background:#0B0A10;color:#F7F5FA;border:1px solid #312F39;border-radius:28px;padding:72px 64px}
+.lore .eyebrow{color:#94909F}
+.lore .eyebrow:before{background:#B8A1FF}
+.lore h2{margin:18px 0 16px}
+.lore em.turn{color:#C4B2FF}
+.lore p{color:#A9A6B2;max-width:400px}
+.memory-stage{position:relative;min-height:400px;display:grid;place-items:center}
+.memory-back{position:absolute;width:min(230px,63vw);height:min(290px,80vw);border-radius:6px;background:#CBC2E0;transform:rotate(11deg)}
+.memory{grid-area:1/1;position:relative;background:#fff;padding:13px 13px 20px;width:min(254px,70vw);transform:rotate(-7deg);box-shadow:0 24px 48px #00000055;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .35s}
+.memory-stage>.memory-back{grid-area:1/1}
+.memory-stage:not([data-style=polaroid]) .polaroid,.memory-stage:not([data-style=collage]) .collage,.memory-stage:not([data-style=ticket]) .tix{opacity:0;transform:rotate(4deg) translateY(18px) scale(.92);pointer-events:none}
+.memory-stage:hover .memory{transform:rotate(-3deg) translateY(-8px)}
+.memory-stage:hover:not([data-style=polaroid]) .polaroid,.memory-stage:hover:not([data-style=collage]) .collage,.memory-stage:hover:not([data-style=ticket]) .tix{transform:rotate(4deg) translateY(18px) scale(.92)}
+.memory.collage{padding:10px 10px 18px;border-radius:14px;transform:rotate(-4deg)}
+.collage .cg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.collage .cg img{height:107px;border-radius:7px}
+.memory.tix{padding:0;border-radius:18px;overflow:hidden;transform:rotate(-5deg)}
+.tix img{height:200px}
+.tix .tx-tear{display:block;position:relative;height:2px;margin:0 0 4px;background-image:radial-gradient(circle,#B1ABBE 1px,transparent 1.2px);background-size:9px 2px;background-repeat:repeat-x}
+.tix .tx-tear:before,.tix .tx-tear:after{content:'';position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;background:#0B0A10}
+.tix .tx-tear:before{left:-9px}.tix .tx-tear:after{right:-9px}
+.tix h3,.tix small{padding:0 18px}.tix small{padding-bottom:18px}
+.polaroid img{height:220px}
+.memory h3{font-size:21px;margin-top:16px;color:#100D18}
+.memory small{display:block;font:500 11px var(--body);letter-spacing:.14em;color:#5F5A6B;margin-top:7px;text-transform:uppercase}
+.stamp{position:absolute;right:-34px;bottom:96px;transform:rotate(4deg);border:2.5px solid #B8A1FF;color:#B8A1FF;border-radius:11px;padding:9px 15px;font:650 14px/1.2 var(--display);letter-spacing:.07em;text-transform:uppercase;background:#0B0A10E6}
+
+/* The passport is the app's inverted card: ink ground on the light page, paper on the
+   dark one, every stamp slot drawn whether earned or not, exactly like the real one. */
+.pass-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.passport{background:var(--ink);color:var(--bg);border-radius:24px;padding:28px 28px 24px;max-width:420px;box-shadow:0 26px 60px #26144C26;transform:rotate(1.5deg)}
+.pp-head{display:flex;justify-content:space-between;align-items:center;font:600 10px var(--body);letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+.pp-rule{height:2px;background-image:radial-gradient(circle,currentColor 1px,transparent 1.2px);background-size:9px 2px;background-repeat:repeat-x;opacity:.35;margin:16px 0 22px}
+.pp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 10px}
+.pp-slot{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:none;border:0;padding:4px 0;color:inherit;border-radius:12px;transition:transform .2s}
+.pp-slot:hover{transform:translateY(-2px)}
+.pp-slot.sel .disc{box-shadow:0 0 0 3px var(--bg),0 0 0 5px #B8A1FF}
+html[data-theme=dark] .pp-slot.sel .disc{box-shadow:0 0 0 3px var(--bg),0 0 0 5px #5B3BC4}
+.pp-slot.sel:not(.earned) .disc{opacity:.9;border-style:solid;box-shadow:none}
+.motion-ready .pp-slot.sel:not(.earned) .disc{animation:none}
+.motion-ready .reveal:not(.visible) .pp-slot.earned .disc{opacity:0}
+.motion-ready .visible .pp-slot.earned .disc{animation:stampin .6s cubic-bezier(.17,1.1,.3,1) both;animation-delay:calc(.35s + var(--i) * .18s)}
+.pp-slot .disc{width:46px;height:46px;border-radius:50%;display:grid;place-items:center}
+.pp-slot.earned .disc{background:var(--c)}
+.pp-slot.earned svg{width:22px;height:22px;fill:none;stroke:#100D18;stroke-width:1.8}
+.pp-slot:not(.earned) .disc{border:2px dashed currentColor;opacity:.3}
+.pp-slot span{font:500 10px var(--body);letter-spacing:.04em;opacity:.85}
+.pp-slot:not(.earned) span{opacity:.45}
+.pp-next{margin-top:22px;font-size:12px;line-height:1.6;opacity:.75}
+.pp-next b{font-weight:600}
+.pass-copy h2{margin-bottom:16px}
+.pass-copy p{color:var(--muted);max-width:430px;margin-bottom:14px}
+
+/* Join: the two doors to a seat, drawn as the app's own buttons. */
+.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.door{border:1px solid var(--line);border-radius:22px;padding:28px;background:var(--surface);display:flex;flex-direction:column;gap:16px}
+.door .fakebtn{align-self:start;display:inline-flex;align-items:center;gap:9px;border-radius:99px;padding:12px 22px;font:600 14px var(--body)}
+.door .fakebtn.solid{background:var(--cta-bg);color:var(--cta-ink)}
+.door .fakebtn.ghost{border:1.5px solid var(--line-strong);color:var(--ink)}
+.door h3{font-size:22px}
+.door p{color:var(--muted);font-size:14px}
+.door .stampmini{align-self:start;transform:rotate(-6deg);border:2.5px solid var(--accent-text);color:var(--accent-text);border-radius:10px;padding:6px 12px;font:650 12px var(--display);letter-spacing:.08em;text-transform:uppercase}
+
+/* Host and earn: the money row from the app's review step, as an object. */
+.earn-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.earncard{background:var(--ink);color:var(--bg);border-radius:24px;padding:26px;max-width:400px;box-shadow:0 26px 60px #26144C26;transform:rotate(-1.5deg);transition:transform .4s}
+.earncard:hover,.earncard:focus-within{transform:rotate(0deg)}
+.earncard .ec-top{display:flex;justify-content:space-between;font:600 11px var(--body);letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.earncard h3{font-size:21px;margin:12px 0 18px}
+.ec-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent);font-size:14px}
+.ec-row b{font:650 15px var(--display)}
+.ec-slide{display:block;cursor:pointer}
+.ec-slide>span{display:flex;justify-content:space-between;align-items:center}
+.ec-slide input{display:block;width:100%;margin:12px 0 4px;-webkit-appearance:none;appearance:none;height:22px;background:none;cursor:pointer;--v:20%}
+.ec-slide input::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,#B8A1FF var(--v),color-mix(in srgb,var(--bg) 22%,transparent) var(--v))}
+.ec-slide input::-moz-range-track{height:4px;border-radius:2px;background:color-mix(in srgb,var(--bg) 22%,transparent)}
+.ec-slide input::-moz-range-progress{height:4px;border-radius:2px;background:#B8A1FF}
+.ec-slide input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:var(--bg);border:3px solid #B8A1FF;box-shadow:0 4px 12px #0000004D;transition:transform .15s}
+.ec-slide input::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid #B8A1FF}
+.ec-slide input:active::-webkit-slider-thumb{transform:scale(1.15)}
+html[data-theme=dark] .ec-slide input{--fillc:#5B3BC4}
+html[data-theme=dark] .ec-slide input::-webkit-slider-runnable-track{background:linear-gradient(90deg,#5B3BC4 var(--v),color-mix(in srgb,var(--bg) 22%,transparent) var(--v))}
+html[data-theme=dark] .ec-slide input::-webkit-slider-thumb,html[data-theme=dark] .ec-slide input::-moz-range-thumb{border-color:#5B3BC4}
+html[data-theme=dark] .ec-slide input::-moz-range-progress{background:#5B3BC4}
+.ec-total b{transition:transform .2s}.ec-total b.bump{transform:scale(1.06)}
+.ec-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;padding-top:14px;border-top:2px dashed color-mix(in srgb,var(--bg) 30%,transparent)}
+.ec-total span{font-size:13px;opacity:.75}
+.ec-total b{font:700 34px var(--display);letter-spacing:-.02em;color:var(--accent-on-ink,#B8A1FF)}
+html:not([data-theme=dark]) .ec-total b{color:#B8A1FF}
+html[data-theme=dark] .ec-total b{color:#5B3BC4}
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chiprow span{border:1px solid var(--line);border-radius:99px;padding:7px 14px;font:500 12.5px var(--body);color:var(--muted)}
+
+/* Host of the month: the board as a podium, real rules as chips. */
+.hotm{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.board{border:1px solid var(--line);border-radius:24px;padding:22px;background:var(--surface)}
+.board-head{display:flex;justify-content:space-between;align-items:center;font:600 11px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.brow{display:grid;grid-template-columns:28px 46px 1fr auto;gap:14px;align-items:center;padding:12px 6px;border-top:1px solid var(--line)}
+.brow:first-of-type{border-top:0}
+.brow .rk{font:650 15px var(--display);color:var(--faint);text-align:center}
+.brow img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.brow strong{display:block;font:600 15px var(--display)}
+.brow small{color:var(--muted);font-size:12px}
+.brow .gs{font:650 13px var(--display);color:var(--ink);background:var(--chip-well);border-radius:99px;padding:5px 11px;white-space:nowrap}
+.brow.first{background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:16px;border-top-color:transparent}
+.brow.first .rk{color:var(--accent-text)}
+.brow.first img{box-shadow:0 0 0 3px var(--accent)}
+.crown{display:inline-block;font:italic 600 13px var(--serif);color:var(--accent-text);margin-left:6px}
+
+/* Level up: the seven real titles on one track, and what each action is worth. */
+.ladder{--fill:14.3%;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:8px 0 34px;position:relative}
+.ladder:before{content:'';position:absolute;left:calc(100% / 14);right:calc(100% / 14);top:15px;height:3px;border-radius:2px;background:var(--line)}
+.ladder:after{content:'';position:absolute;left:calc(100% / 14);top:15px;height:3px;border-radius:2px;background:var(--accent);width:var(--fill,20%);transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.motion-ready .ladder:not(.visible){--fill:0%}
+.rung{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.rung i{width:33px;height:33px;border-radius:50%;background:var(--bg);border:3px solid var(--line);display:grid;place-items:center;font:700 11px var(--display);font-style:normal;color:var(--faint)}
+.rung.on i{border-color:var(--accent);background:var(--accent);color:var(--bg)}
+.rung strong{font:600 13px var(--display)}
+.rung small{font-size:11px;color:var(--faint)}
+.xpgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.xp{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--surface)}
+.xp b{display:block;font:700 30px var(--display);letter-spacing:-.02em;color:var(--accent-text)}
+.xp span{font-size:13px;color:var(--muted)}
+
+/* Trending: the city's hottest plans as cards, hype as a flame count. */
+.trend-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tcard{border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line);transition:transform .25s}
+.tcard:hover{transform:translateY(-4px)}
+.tcard .cov{position:relative;aspect-ratio:4/3;overflow:hidden}
+.tcard .cov img{height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.tcard:hover .cov img{transform:scale(1.045)}
+.tcard .rank{position:absolute;top:12px;left:12px;background:#09090BB0;color:#fff;backdrop-filter:blur(6px);border-radius:99px;padding:5px 11px;font:650 11px var(--display);letter-spacing:.06em}
+.tcard .hype{position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;gap:5px;background:#FFF;color:#A8451C;border-radius:99px;padding:5px 11px;font:650 12px var(--display)}
+.tcard .hype svg{width:12px;height:12px;fill:#E46B2E}
+.tcard .tb{padding:16px 18px 18px}
+.tcard .tb small{display:flex;align-items:center;gap:7px;font:600 11px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.tcard .tb small i{width:6px;height:6px;border-radius:50%;background:var(--c)}
+.tcard .tb strong{display:block;font:650 17px var(--display);margin:7px 0 4px}
+.tcard .tb span{font-size:13px;color:var(--muted)}
+
+.inside-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.inside-card{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--surface);background:color-mix(in srgb,var(--c,var(--line)) 9%,var(--surface));border-color:color-mix(in srgb,var(--c,var(--line)) 30%,var(--line))}
+.inside-card h3{font-size:16px;margin-bottom:9px;display:flex;align-items:center;gap:10px}
+.inside-card h3 i{font-style:normal;flex:none;width:7px;height:7px;border-radius:50%;background:var(--c,var(--line-strong))}
+.inside-card p{font-size:13px;line-height:1.65;color:var(--muted)}
+
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:15px;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary{transition:color .2s}summary:hover{color:var(--accent-text)}
+summary:after{content:'+';font:400 22px var(--display);color:var(--accent-text);flex:none}
+details[open] summary:after{content:'−'}
+details p{padding:0 32px 20px 0;font-size:14px;color:var(--muted)}
+
+.closer{text-align:center;padding:110px 0 96px}
+.closer h2{font:720 clamp(40px,6vw,76px)/1 var(--display);letter-spacing:-.045em;margin:16px 0 14px}
+.closer p{color:var(--muted);max-width:420px;margin-inline:auto}
+
+.footer{border-top:1px solid var(--line);padding:36px 0 30px;text-align:center}
+.fine{margin-top:18px;font-size:11px;color:var(--faint)}
+
+html[data-motion=off]{scroll-behavior:auto}
+html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:after{animation:none!important;transition:none!important}
+@media(max-width:1000px){
+ .ticket-grid,.pass-grid,.earn-grid,.hotm{grid-template-columns:1fr;gap:40px}
+ .earncard{margin-inline:auto}
+ .trend-row{grid-template-columns:1fr 1fr}
+ .xpgrid{grid-template-columns:1fr 1fr}
+ .passport{margin-inline:auto}
+ .inside-grid{grid-template-columns:1fr 1fr}
+ .section-head{display:block}.section-head p{margin-top:16px}
+ .lore{grid-template-columns:1fr;gap:36px;padding:48px 28px}
+}
+@media(max-width:700px){
+ .wrap{width:calc(100% - 32px)}
+ .stage{padding-top:30px}
+ .closer h2{font-size:clamp(30px,9vw,40px)}
+ .crown{display:block;margin:2px 0 0}
+ .board-head{font-size:11px;letter-spacing:.1em;gap:12px}
+ .brow{grid-template-columns:22px 42px minmax(0,1fr) auto;gap:12px}
+ .brow img{width:42px;height:42px}
+ .sub{font-size:15px}
+ .chips{gap:7px}
+ .chip{padding:8px 13px;font-size:12px}
+ .section{padding:72px 0 0}
+ .steps{grid-template-columns:1fr;gap:26px}
+ .inside-grid,.join-grid,.trend-row{grid-template-columns:1fr}
+ .ladder{grid-template-columns:repeat(4,1fr);row-gap:22px}
+ .ladder:before,.ladder:after{display:none}
+ .faq-grid{grid-template-columns:1fr;gap:28px}
+ .memory-stage{min-height:380px}
+ .stamp{right:-14px;bottom:88px}
+}
+/* Grid children may shrink below their content, or a long row pushes the column wider than the phone. */
+.hotm>*,.earn-grid>*,.pass-grid>*,.ticket-grid>*,.lore>*,.faq-grid>*{min-width:0}
+@media(max-width:360px){
+ .wrap{width:calc(100% - 24px)}
+ .lore{padding:34px 18px;border-radius:22px}
+ .brow{grid-template-columns:20px 38px minmax(0,1fr) auto;gap:10px}
+ .brow img{width:38px;height:38px}
+ .brow .gs{padding:4px 8px;font-size:12px}
+ .crown{display:block;margin:2px 0 0}
+ .board{padding:14px}
+ .ladder{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .rung strong{font-size:12px}
+ h1{font-size:46px}
+ h2{font-size:28px;letter-spacing:-.03em}
+ .sub{font-size:16px}
+ .theme-toggle .tx{display:none}
+ .chips{gap:4px;padding:5px}
+ .chip{padding:8px 11px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head><body>
+<a class="skip" href="#phone">Skip to the demo</a>
+<header class="bar" id="bar"><div class="wrap top">
+<a class="logo" href="./" aria-label="Find Lore home"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true"><rect x="1" y="1" width="46" height="30" rx="8" fill="#B8A1FF"/><circle cx="28" cy="1" r="3.4" fill="#09090B"/><circle cx="28" cy="31" r="3.4" fill="#09090B"/><circle cx="37.5" cy="16" r="3.6" fill="#09090B"/></svg><span>Find <em>Lore</em></span></a>
+<div class="top-right"><button class="theme-toggle" type="button" aria-pressed="false">Dark mode</button></div>
+</div><span class="progress" aria-hidden="true"></span></header>
+<main id="main">
+<section class="wrap stage">
+<h1><span class="rev"><span style="--d:.06s">Go find your</span></span><span class="rev"><span style="--d:.16s"><span class="turnwrap"><em class="turn" id="turnword">people</em><span id="burst" aria-hidden="true"></span></span></span></span></h1>
+<p class="sub fx" style="--d:.3s">Real plans in your city. Take a seat, meet your people, keep the story.</p>
+</section>
+
+<section class="wrap spread" id="phone" aria-label="Interactive demo of the Find Lore app">
+<div class="objs" aria-hidden="true">
+<div class="obj t" style="--r:-8deg;--dur:7.6s;--d:.55s"><small>Sport · Tonight</small><strong>Evening swim</strong><span class="tear-row"></span><span class="adm">Admit one<i></i></span></div>
+<div class="obj p" style="--r:6deg;--dur:8.6s;--d:.68s"><img src="./assets/friends.jpg" alt="" width="900" height="506"><em>you had to be there</em></div>
+<div class="obj s" style="--r:-7deg;--dur:6.4s;--d:.95s">Seat confirmed</div>
+<div class="obj pin" style="--r:3deg;--dur:7.1s;--d:.78s"><span class="head"><img src="./assets/social.jpg" alt="" width="400" height="400"></span><span class="tail"></span><span class="price">₹400</span></div>
+<div class="obj b" style="--r:-3deg;--dur:6.8s;--d:.88s">Round two next week?<br><span class="react">🔥 2</span></div>
+</div>
+<div class="device">
+<div class="phone"><i class="hwbtn a" aria-hidden="true"></i><i class="hwbtn b" aria-hidden="true"></i><i class="hwbtn c" aria-hidden="true"></i><img id="demo-img" src="./assets/screens/demo-light/home.jpg" alt="Home: search, tonight and the city map" width="540" height="1168" fetchpriority="high"><span class="sheen" aria-hidden="true"></span><div class="hotspots" id="demo-spots"></div></div>
+<div class="chips" id="demo-chips" role="group" aria-label="Jump to a screen">
+<button type="button" class="chip fx" style="--d:0.55s" data-screen="home" aria-pressed="true">Home</button><button type="button" class="chip fx" style="--d:0.60s" data-screen="map" aria-pressed="false">Map</button><button type="button" class="chip fx" style="--d:0.65s" data-screen="plan" aria-pressed="false">A plan</button><button type="button" class="chip fx" style="--d:0.70s" data-screen="ticket" aria-pressed="false">Ticket</button><button type="button" class="chip fx" style="--d:0.75s" data-screen="people" aria-pressed="false">People</button><button type="button" class="chip fx" style="--d:0.80s" data-screen="chats" aria-pressed="false">Chats</button><button type="button" class="chip fx" style="--d:0.85s" data-screen="concierge" aria-pressed="false">Concierge</button><button type="button" class="chip fx" style="--d:0.90s" data-screen="host" aria-pressed="false">Hosting</button>
+</div>
+<p class="hint fx" style="--d:.95s">Every screen is the real build, running a demo city.</p>
+</div>
+</section>
+
+<section class="section" id="how"><div class="wrap">
+<div class="eyebrow reveal">How it works</div>
+<div class="section-head reveal"><h2>Less figuring it out.<br><em class="turn">More getting together.</em></h2></div>
+<div class="steps">
+<article class="step reveal"><div class="step-number">01</div><h3>Find your plan</h3><p>Tonight, the weekend, or the whole city on a map. Time, place, host and cost up front.</p><button type="button" class="seeit" data-goto="map">See the map</button></article>
+<article class="step reveal"><div class="step-number">02</div><h3>Take a seat</h3><p>Join instantly or ask the host. The group chat opens the moment you are in.</p><button type="button" class="seeit" data-goto="plan">See a plan</button></article>
+<article class="step reveal"><div class="step-number">03</div><h3>Show up</h3><p>Meet your people. Afterwards the plan becomes a Lore card you keep.</p><button type="button" class="seeit" data-goto="ticket">See the ticket</button></article>
+</div>
+</div></section>
+
+<section class="section" id="join"><div class="wrap">
+<div class="eyebrow reveal">Join a plan</div>
+<div class="section-head reveal"><h2>Two ways in.<br><em class="turn">Both take a tap.</em></h2></div>
+<div class="join-grid">
+<article class="door reveal"><span class="fakebtn solid"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>Join instantly</span><h3>Open plans</h3><p>Your seat is confirmed the moment you tap.</p><span class="stampmini">Seat confirmed</span></article>
+<article class="door reveal"><span class="fakebtn ghost">Ask to join</span><h3>Host approves</h3><p>The host sees your profile and says yes.</p><span class="stampmini">Request sent</span></article>
+</div>
+</div></section>
+
+<section class="section" id="ticket"><div class="wrap ticket-grid">
+<div class="reveal"><div class="bigticket" role="img" aria-label="A Find Lore ticket with a QR code, a perforation and a punched stub">
+<div class="bt-head"><span>Find Lore</span><span>Nº 0042</span></div>
+<h3>Kasol weekend escape</h3>
+<p class="bt-sub">Kasol, Himachal · Friday · 9:00 PM</p>
+<svg class="qr" viewBox="0 0 29 29" aria-hidden="true" fill="#100D18"><rect x="0" y="0" width="7" height="7"/><rect x="2" y="2" width="3" height="3" fill="#FFF"/><rect x="22" y="0" width="7" height="7"/><rect x="24" y="2" width="3" height="3" fill="#FFF"/><rect x="0" y="22" width="7" height="7"/><rect x="2" y="24" width="3" height="3" fill="#FFF"/><rect x="9" y="1" width="2" height="2"/><rect x="13" y="0" width="2" height="3"/><rect x="17" y="2" width="2" height="2"/><rect x="10" y="5" width="3" height="2"/><rect x="15" y="4" width="2" height="2"/><rect x="19" y="5" width="2" height="2"/><rect x="1" y="9" width="2" height="2"/><rect x="5" y="10" width="2" height="2"/><rect x="8" y="9" width="3" height="3"/><rect x="13" y="8" width="2" height="2"/><rect x="16" y="10" width="3" height="2"/><rect x="21" y="9" width="2" height="2"/><rect x="25" y="10" width="2" height="2"/><rect x="2" y="14" width="2" height="2"/><rect x="6" y="13" width="2" height="3"/><rect x="10" y="14" width="2" height="2"/><rect x="14" y="13" width="3" height="3"/><rect x="19" y="14" width="2" height="2"/><rect x="23" y="13" width="2" height="2"/><rect x="26" y="15" width="2" height="2"/><rect x="1" y="18" width="3" height="2"/><rect x="6" y="18" width="2" height="2"/><rect x="9" y="19" width="2" height="2"/><rect x="13" y="18" width="2" height="2"/><rect x="17" y="18" width="2" height="3"/><rect x="21" y="19" width="3" height="2"/><rect x="25" y="18" width="2" height="2"/><rect x="9" y="23" width="2" height="2"/><rect x="12" y="22" width="2" height="3"/><rect x="16" y="24" width="2" height="2"/><rect x="20" y="23" width="2" height="2"/><rect x="24" y="24" width="3" height="2"/><rect x="10" y="27" width="3" height="2"/><rect x="15" y="26" width="2" height="2"/><rect x="19" y="27" width="2" height="2"/></svg>
+<div class="bt-tear" aria-hidden="true"></div>
+<div class="bt-foot"><span>Admit one</span><span class="punch" aria-hidden="true"></span></div>
+</div></div>
+<div class="ticket-copy reveal">
+<div class="eyebrow">Tickets</div>
+<h2 style="margin-top:16px">Your seat is a ticket.<br><em class="turn">A real one.</em></h2>
+<ul class="tick-list" style="margin-top:26px">
+<li>Minted with its own secret, scanned by the host at the door.</li>
+<li>Scans work offline and sync later.</li>
+<li>Every scan shows the face, the one check a code cannot do.</li>
+</ul>
+</div>
+</div></section>
+
+<section class="section" id="host"><div class="wrap earn-grid">
+<div class="reveal"><div class="earncard" id="earn">
+<div class="ec-top"><span>Hosting</span><span>Try it</span></div>
+<h3>Friday board game night</h3>
+<label class="ec-row ec-slide"><span>Seat fee <b id="fee-out">₹400</b></span><input type="range" id="fee" min="0" max="2000" step="50" value="400" aria-label="Seat fee in rupees"></label>
+<label class="ec-row ec-slide"><span>Seats taken <b id="seats-out">6</b></span><input type="range" id="seats" min="1" max="20" step="1" value="6" aria-label="Seats taken"></label>
+<div class="ec-row"><span>Collected by</span><b>You, on UPI</b></div>
+<div class="ec-total"><span>Yours to keep</span><b id="earn-out" aria-live="polite">₹2,400</b></div>
+</div></div>
+<div class="reveal">
+<div class="eyebrow">Host and earn</div>
+<h2 style="margin-top:16px">Put up a plan.<br><em class="turn">Keep what it makes.</em></h2>
+<p class="pull" style="margin-top:20px">Charge a seat fee if you want. You <em>collect it</em>, and all of it is yours.</p>
+<div class="chiprow"><span>Ready in a minute</span><span>Templates</span><span>Approve who joins</span><span>Scan tickets at the door</span></div>
+</div>
+</div></section>
+
+<section class="section" id="hotm"><div class="wrap hotm">
+<div class="reveal">
+<div class="eyebrow">Host of the month</div>
+<h2 style="margin-top:16px">The city’s<br><em class="turn">best nights out.</em></h2>
+<p class="pull" style="margin-top:20px">Ranked by how many <em>different people</em> showed up. Not by followers.</p>
+<div class="chiprow"><span>Verified host</span><span>Two plans that happened</span><span>Three or more guests</span></div>
+</div>
+<div class="reveal"><div class="board" role="img" aria-label="An example Host of the month board">
+<div class="board-head"><span>Host of the month · October</span><span>Demo city</span></div>
+<div class="brow first"><span class="rk">1</span><img src="https://images.pexels.com/photos/16916681/pexels-photo-16916681.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&fit=crop&crop=faces" alt="" width="46" height="46" loading="lazy"><span><strong>Mehar<span class="crown">host of the month</span></strong><small>Swims and brunches</small></span><span class="gs">14 guests</span></div><div class="brow"><span class="rk">2</span><img src="https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&fit=crop&crop=faces" alt="" width="46" height="46" loading="lazy"><span><strong>Arjun</strong><small>Treks and Kasol trips</small></span><span class="gs">11 guests</span></div><div class="brow"><span class="rk">3</span><img src="https://images.pexels.com/photos/15602468/pexels-photo-15602468.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&fit=crop&crop=faces" alt="" width="46" height="46" loading="lazy"><span><strong>Ananya</strong><small>Coffee tables</small></span><span class="gs">9 guests</span></div>
+</div></div>
+</div></section>
+
+<section class="section" id="lore"><div class="wrap"><div class="lore reveal">
+<div class="memory-stage" id="lorecard" data-style="polaroid">
+ <div class="memory-back" aria-hidden="true"></div>
+ <div class="memory polaroid"><img src="./assets/social.jpg" alt="A Lore card in the Polaroid style: a shared meal" loading="lazy" width="400" height="400"><h3>You had to be there.</h3><small>Good company · Chandigarh</small><div class="stamp" aria-hidden="true">Made of<br>real life</div></div>
+ <div class="memory collage" aria-hidden="true"><div class="cg"><img src="./assets/social.jpg" alt="" loading="lazy" width="400" height="400"><img src="./assets/friends.jpg" alt="" loading="lazy" width="900" height="506"><img src="./assets/nightlife.jpg" alt="" loading="lazy" width="900" height="600"><img src="./assets/outdoors.jpg" alt="" loading="lazy" width="900" height="600"></div><h3>Four photos, one night.</h3><small>Lore #12 · Chandigarh</small></div>
+ <div class="memory tix" aria-hidden="true"><img src="./assets/nightlife.jpg" alt="" loading="lazy" width="900" height="600"><span class="tx-tear"></span><h3>Friday, sorted.</h3><small>Admit one · Lore #12</small></div>
+</div>
+<div>
+ <div class="eyebrow">Share your lore</div>
+ <h2>A plan ends.<br><em class="turn">The lore doesn’t.</em></h2>
+ <div class="lore-chips" role="group" aria-label="Pick a Lore card style"><button type="button" data-style="polaroid" aria-pressed="true">Polaroid</button><button type="button" data-style="collage" aria-pressed="false">Collage</button><button type="button" data-style="ticket" aria-pressed="false">Ticket</button></div>
+ <p class="pull" style="color:#A9A6B2"><em style="color:#C4B2FF">The story</em> is the souvenir.</p>
+ <p class="lore-share">Share it to Instagram Stories. The most shared card each week becomes Lore of the week.</p>
+</div>
+</div></div></section>
+
+<section class="section" id="passport"><div class="wrap pass-grid">
+<div class="reveal"><div class="passport" role="group" aria-label="The Find Lore passport: nine stamp slots, three earned. Tap a stamp to see what earns it.">
+<div class="pp-head"><span>Find Lore · Passport</span><span>3 stamps</span></div>
+<div class="pp-rule" aria-hidden="true"></div>
+<div class="pp-grid">
+<button type="button" class="pp-slot earned" style="--c:#67B3E9;--i:0" data-label="First plan" data-hint="Attended your first completed plan." data-earned="1" aria-label="First plan, earned"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v3a2 2 0 0 0 0 6v3a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-6V6a2 2 0 0 1 2-2z"/></svg></span><span>First plan</span></button><button type="button" class="pp-slot earned" style="--c:#E99D67;--i:1" data-label="Host" data-hint="Hosted a plan." data-earned="1" aria-label="Host, earned"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11v3l3 1 2 5h2l-1.6-5H12l7 3V5l-7 3H6a2 2 0 0 0-2 3z"/></svg></span><span>Host</span></button><button type="button" class="pp-slot earned" style="--c:#67E9D8;--i:2" data-label="Explorer" data-hint="Three different kinds of plans." data-earned="1" aria-label="Explorer, earned"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm3.5 5.5-2 5-5 2 2-5 5-2z"/></svg></span><span>Explorer</span></button><button type="button" class="pp-slot" data-label="Connector" data-hint="Someone you invited showed up to a plan." aria-label="Connector, still to earn"><span class="disc"></span><span>Connector</span></button><button type="button" class="pp-slot" data-label="Verified" data-hint="ID checked." aria-label="Verified, still to earn"><span class="disc"></span><span>Verified</span></button><button type="button" class="pp-slot" data-label="Early riser" data-hint="A plan before 7am." aria-label="Early riser, still to earn"><span class="disc"></span><span>Early riser</span></button><button type="button" class="pp-slot" data-label="Overnighter" data-hint="A multi-day escape." aria-label="Overnighter, still to earn"><span class="disc"></span><span>Overnighter</span></button><button type="button" class="pp-slot" data-label="Regular" data-hint="Five plans done." aria-label="Regular, still to earn"><span class="disc"></span><span>Regular</span></button><button type="button" class="pp-slot" data-label="Loved" data-hint="Rated 4.8 or more by five people." aria-label="Loved, still to earn"><span class="disc"></span><span>Loved</span></button>
+</div>
+<p class="pp-next" id="pp-next" aria-live="polite"><b>Next stamp: Connector.</b> Someone you invited showed up to a plan.</p>
+</div></div>
+<div class="pass-copy reveal">
+<div class="eyebrow">The passport</div>
+<h2 style="margin-top:16px">Nine stamps.<br><em class="turn">All of them earned.</em></h2>
+<p class="pull" style="margin-top:20px">An <em>invitation</em>, never a scoreboard. It fills in plan by plan.</p>
+</div>
+</div></section>
+
+<section class="section" id="level"><div class="wrap">
+<div class="eyebrow reveal">Level up</div>
+<div class="section-head reveal"><h2>Every plan counts.<br><em class="turn">Literally.</em></h2></div>
+<div class="ladder reveal">
+<div class="rung on"><i>1</i><strong>Newcomer</strong><small>0 XP</small></div><div class="rung on"><i>2</i><strong>Wanderer</strong><small>200 XP</small></div><div class="rung"><i>3</i><strong>Explorer</strong><small>500 XP</small></div><div class="rung"><i>4</i><strong>Trailblazer</strong><small>1k XP</small></div><div class="rung"><i>5</i><strong>Pathfinder</strong><small>1.8k XP</small></div><div class="rung"><i>6</i><strong>Voyager</strong><small>3k XP</small></div><div class="rung"><i>7</i><strong>Legend</strong><small>5k XP</small></div>
+</div>
+<div class="xpgrid">
+<div class="xp reveal"><b>+100</b><span>Show up to a plan</span></div><div class="xp reveal"><b>+150</b><span>Host one that happens</span></div><div class="xp reveal"><b>+10</b><span>Each photo you add</span></div><div class="xp reveal"><b>+20</b><span>Rate the night</span></div>
+</div>
+</div></section>
+
+<section class="section" id="trending"><div class="wrap">
+<div class="eyebrow reveal">Trending</div>
+<div class="section-head reveal"><h2>What the city<br><em class="turn">is hyped about.</em></h2></div>
+<div class="trend-row">
+<article class="tcard reveal" style="--c:var(--sport)"><div class="cov"><img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=700&q=75" alt="" loading="lazy" width="700" height="525"><span class="rank">#1 this week</span><span class="hype"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.6 5 10a5 5 0 0 1-10 0c0-2 1-3.6 2-4.6 0 1.6 1 2.6 2 2.6-1-3 1-8 1-8z"/></svg>12</span></div><div class="tb"><small><i></i>Sport · Tonight</small><strong>Evening swim + chai after</strong><span>Sector 23 Swimming Pool</span></div></article><article class="tcard reveal" style="--c:var(--trip)"><div class="cov"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=75" alt="" loading="lazy" width="700" height="525"><span class="rank">#2 this week</span><span class="hype"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.6 5 10a5 5 0 0 1-10 0c0-2 1-3.6 2-4.6 0 1.6 1 2.6 2 2.6-1-3 1-8 1-8z"/></svg>9</span></div><div class="tb"><small><i></i>Trip · Friday</small><strong>Kasol weekend escape</strong><span>Kasol, Himachal</span></div></article><article class="tcard reveal" style="--c:var(--sport)"><div class="cov"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=700&q=75" alt="" loading="lazy" width="700" height="525"><span class="rank">#3 this week</span><span class="hype"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.6 5 10a5 5 0 0 1-10 0c0-2 1-3.6 2-4.6 0 1.6 1 2.6 2 2.6-1-3 1-8 1-8z"/></svg>6</span></div><div class="tb"><small><i></i>Sport · Saturday</small><strong>Badminton doubles</strong><span>Sector 42 Sports Complex</span></div></article>
+</div>
+</div></section>
+
+<section class="section" id="inside"><div class="wrap">
+<div class="eyebrow reveal">Inside the app</div>
+<div class="section-head reveal"><h2>Everything a plan needs.<br><em class="turn">Nothing it doesn’t.</em></h2></div>
+<div class="inside-grid">
+<article class="inside-card reveal" style="--c:var(--hangout)"><h3><i aria-hidden="true"></i>Plan chat</h3><p>Every plan has a group chat from the moment you are in. Break the ice, sort the details, keep the thread after.</p></article><article class="inside-card reveal" style="--c:var(--event)"><h3><i aria-hidden="true"></i>Real tickets</h3><p>A confirmed seat is a ticket with a QR code. The host scans it at the door, so the table is the people who said yes.</p></article><article class="inside-card reveal" style="--c:var(--workshop)"><h3><i aria-hidden="true"></i>Split the bill</h3><p>Add what was spent, see who owes what, settle by UPI and mark it paid. No spreadsheet, no awkward follow-up.</p></article><article class="inside-card reveal" style="--c:var(--trip)"><h3><i aria-hidden="true"></i>The city on a map</h3><p>Every upcoming plan as a pin with its photo and price. See what is close, what is tonight, and what is worth the drive.</p></article><article class="inside-card reveal" style="--c:var(--ride)"><h3><i aria-hidden="true"></i>Hosting, made easy</h3><p>Put up a plan in a minute, approve who joins, and charge a seat fee if you want. You collect it, and all of it is yours.</p></article><article class="inside-card reveal" style="--c:var(--movie)"><h3><i aria-hidden="true"></i>Lore cards</h3><p>When a plan ends, turn its photos into a card worth sharing. The story is the souvenir.</p></article>
+</div>
+</div></section>
+
+<section class="section" id="faq"><div class="wrap faq-grid">
+<div class="reveal"><div class="eyebrow">A few good questions</div><h2 style="margin-top:16px">Before you<br><em class="turn">say “I’m in.”</em></h2></div>
+<div><details><summary>Where is Find Lore live?</summary><p>Chandigarh first. We are starting close to home so that the community can grow around real places and shared plans. More cities will follow.</p></details><details><summary>Can I join and host?</summary><p>Yes. Find something you want to join, or bring an idea of your own. The same account lets you do both. Find Lore is for people aged 18 and over.</p></details><details><summary>Does every plan cost money?</summary><p>No. A plan can be free or have a cost set by its host. Check the price, what is included and the payment arrangement before you join.</p></details><details><summary>Do I need to know anyone?</summary><p>You can arrive on your own. Check the host, plan details and who is going, then use the plan chat to break the ice. Some plans need host approval before your place is confirmed.</p></details><details><summary>What is a Lore card?</summary><p>A way to turn a finished plan into a shared memory. Add your photos and words, choose a style, and create a card you can keep or share.</p></details><details><summary>How do I get help?</summary><p>Open Help in the app for anything about your account or a plan. Reporting, blocking and deleting your account all live in the app too.</p></details></div>
+</div></section>
+
+<section class="closer" id="get"><div class="wrap">
+<div class="eyebrow reveal" style="justify-content:center">Coming soon to iPhone and Android</div>
+<h2 class="reveal">Your next story<br><em class="turn">is already out there.</em></h2>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap">
+<p class="logo" style="justify-content:center"><span>Find <em>Lore</em></span></p>
+<p class="fine" style="margin-top:4px">Find your people. Find your plan. Find your lore.</p>
+<p class="fine">© 2026 Find Lore · Find Lore</p>
+</div></footer>
+<script>
+(function(){
+ var root=document.documentElement,reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ function setMotion(){root.dataset.motion=reduced.matches?'off':'on';}
+ setMotion();reduced.addEventListener('change',setMotion);
+ if('IntersectionObserver' in window){
+  root.classList.add('motion-ready');
+  var obs=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+ }
+ var tbtn=document.querySelector('.theme-toggle');
+ function applyTheme(){var dark=root.dataset.theme==='dark';tbtn.innerHTML=dark?'<span>Light<span class="tx"> mode</span></span>':'<span>Dark<span class="tx"> mode</span></span>';tbtn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');tbtn.setAttribute('aria-pressed',String(dark));var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=dark?'#09090B':'#FFFFFF';}
+ tbtn.addEventListener('click',function(){if(root.dataset.theme==='dark'){delete root.dataset.theme;}else{root.dataset.theme='dark';}try{localStorage.setItem('fl-theme',root.dataset.theme==='dark'?'dark':'light');}catch(e){}applyTheme();if(window.__redraw)window.__redraw();});
+ applyTheme();
+ var dimg=document.getElementById('demo-img'),dbox=document.getElementById('demo-spots'),chips=document.getElementById('demo-chips');
+ if(dimg&&dbox){
+  /* Two complete sets of real screenshots of the build running a staged demo city,
+     matched to the page: light page shows the light app, dark page the dark app. Both
+     sets hold the same screens, so one hotspot map serves both. */
+  var P='./assets/screens/demo/',P2='./assets/screens/demo-light/';
+  /* The profile is a nameless "You", so it reads as the visitor's own page, not a person's. */
+  var TABS=[[8,92,17,8,'home','Home tab'],[25,92,16,8,'plans','My plans tab'],[41,92,17,8,'concierge','Concierge tab'],[58,92,17,8,'chats','Chats tab'],[75,92,17,8,'you','Profile tab']];
+  var D={
+   home:{src:P+'home.jpg',light:P2+'home.jpg',alt:'Home: search, tonight and the city map',spots:TABS.concat([[76.5,8,11,6.5,'map','Open the map'],[4,16,92,7,'search','Search plans'],[4,31,92,38,'plan','Open tonight’s plan'],[4,72,92,16,'map','Open the city map']])},
+   plan:{src:P+'plan.jpg',light:P2+'plan.jpg',alt:'Plan detail: Evening swim at Sector 23',spots:[[2,8,16,7,'home','Back'],[36,89,60,9,'chats','Open the group chat']]},
+   map:{src:P+'map.jpg',light:P2+'map.jpg',alt:'The map: every plan a pin across Chandigarh',spots:[[2,8,14,7,'home','Back'],[4,84,64,12,'plan','Open the plan']]},
+   search:{src:P+'search.jpg',light:P2+'search.jpg',alt:'Search: plans by category',spots:[[83,8,14,6,'home','Close search'],[50,14,46,6,'people','See people'],[4,23,92,13,'plan','Open the plan']]},
+   people:{src:P+'people.jpg',light:P2+'people.jpg',alt:'People in Chandigarh, with what you share',spots:[[83,8,14,6,'home','Close search'],[4,14,46,6,'search','See plans']]},
+   plans:{src:P+'plans.jpg',light:P2+'plans.jpg',alt:'My plans: upcoming, hosting and past',spots:TABS.concat([[58,8,38,6,'host','Host a plan']])},
+   host:{src:P+'host.jpg',light:P2+'host.jpg',alt:'The hosting wizard: what are you hosting',spots:[[2,7,16,7,'plans','Back to My plans']]},
+   concierge:{src:P+'concierge.jpg',light:P2+'concierge.jpg',alt:'Concierge: plan a trip in a sentence',spots:TABS},
+   chats:{src:P+'chats.jpg',light:P2+'chats.jpg',alt:'Chats: the group chat behind every plan',spots:TABS},
+   ticket:{src:P+'ticket.jpg',light:P2+'ticket.jpg',alt:'Your ticket: a QR the host scans at the door',spots:[[2,7,14,7,'plan','Close the ticket']]},
+   you:{src:P+'you.jpg',light:P2+'you.jpg',alt:'Your profile: level, stamps and your lore',spots:TABS}
+  };
+  var cur='home';
+  var dgo=function(n){cur=n;var s=D[n],dk=root.dataset.theme==='dark';
+   dimg.src=!dk&&s.light?s.light:s.src;dimg.alt=s.alt;dbox.innerHTML='';
+   var spots=s.spots;
+   spots.forEach(function(sp){var b=document.createElement('button');b.type='button';b.className='spot';b.style.left=sp[0]+'%';b.style.top=sp[1]+'%';b.style.width=sp[2]+'%';b.style.height=sp[3]+'%';b.setAttribute('aria-label',sp[5]);b.addEventListener('click',function(){dgo(sp[4]);});dbox.appendChild(b);});
+   if(chips)chips.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.screen===n));});};
+  window.__redraw=function(){dgo(cur);};
+  window.__go=function(n){if(D[n])dgo(n);};
+  dgo('home');
+  window.addEventListener('load',function(){Object.keys(D).forEach(function(k){var i=new Image();i.src=D[k].src;if(D[k].light){var j=new Image();j.src=D[k].light;}});});
+  var actx=null;
+  var tick=function(){
+   try{
+    if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended')actx.resume();
+    var t=actx.currentTime,o=actx.createOscillator(),g=actx.createGain();
+    o.type='sine';o.frequency.setValueAtTime(1350,t);o.frequency.exponentialRampToValueAtTime(820,t+.05);
+    g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+.07);
+    o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.08);
+   }catch(e){}
+  };
+  dbox.addEventListener('pointerdown',function(e){
+   var sp=e.target.closest('.spot');if(!sp)return;
+   tick();
+   if(root.dataset.motion!=='off'){
+    var r=dbox.getBoundingClientRect(),d=document.createElement('span');d.className='ripple';
+    d.style.left=(e.clientX-r.left)+'px';d.style.top=(e.clientY-r.top)+'px';
+    dbox.appendChild(d);setTimeout(function(){d.remove();},420);
+   }
+  });
+  if(chips)chips.addEventListener('click',function(e){var c=e.target.closest('.chip');if(!c)return;dgo(c.dataset.screen);tick();});
+  var devstage=document.querySelector('.device');
+  if(devstage&&window.matchMedia('(hover: hover)').matches){
+   var ph=devstage.querySelector('.phone'),tx=0,ty=0,cx=0,cy=0,raf=null;
+   var loop=function(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;ph.style.setProperty('--ry',cx.toFixed(2)+'deg');ph.style.setProperty('--rx',cy.toFixed(2)+'deg');if(Math.abs(tx-cx)+Math.abs(ty-cy)>.02){raf=requestAnimationFrame(loop);}else{raf=null;}};
+   devstage.addEventListener('pointermove',function(e){
+    if(root.dataset.motion==='off')return;
+    var r=ph.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+    tx=(px-.5)*9;ty=(.5-py)*9;
+    ph.style.setProperty('--mx',Math.round(px*100)+'%');ph.style.setProperty('--my',Math.round(py*100)+'%');
+    if(!raf)raf=requestAnimationFrame(loop);
+   });
+   devstage.addEventListener('pointerleave',function(){tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop);});
+  }
+ }
+ /* The bar condenses once the page moves and carries a hairline of how far down you are. */
+ var bar=document.getElementById('bar'),ticking=false;
+ var onScroll=function(){ticking=false;var y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;bar.classList.toggle('scrolled',y>8);bar.style.setProperty('--p',h>0?Math.min(1,y/h).toFixed(4):'0');};
+ window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});onScroll();
+ /* Each step opens its own screen in the demo phone. */
+ document.querySelectorAll('.seeit').forEach(function(b){b.addEventListener('click',function(){if(window.__go)window.__go(b.dataset.goto);var ph=document.getElementById('phone');if(ph)ph.scrollIntoView({behavior:root.dataset.motion==='off'?'auto':'smooth',block:'start'});});});
+ /* Host and earn: the card is a calculator. */
+ var fee=document.getElementById('fee'),seats=document.getElementById('seats');
+ if(fee&&seats){
+  var inr=function(n){return '₹'+n.toLocaleString('en-IN');},eo=document.getElementById('earn-out'),bt=null;
+  var fill=function(el){el.style.setProperty('--v',((el.value-el.min)/(el.max-el.min)*100).toFixed(1)+'%');};
+  var calc=function(){var f=+fee.value,n=+seats.value;fill(fee);fill(seats);
+   document.getElementById('fee-out').textContent=f?inr(f):'Free';
+   document.getElementById('seats-out').textContent=String(n);
+   eo.textContent=f?inr(f*n):'Free plan';
+   eo.classList.add('bump');clearTimeout(bt);bt=setTimeout(function(){eo.classList.remove('bump');},160);};
+  fee.addEventListener('input',calc);seats.addEventListener('input',calc);calc();eo.classList.remove('bump');
+ }
+ /* Lore: the three card styles from the Lore Studio. */
+ var lc=document.getElementById('lorecard');
+ document.querySelectorAll('.lore-chips button').forEach(function(b){b.addEventListener('click',function(){lc.dataset.style=b.dataset.style;
+  document.querySelectorAll('.lore-chips button').forEach(function(o){o.setAttribute('aria-pressed',String(o===b));});
+  lc.querySelectorAll('.memory').forEach(function(m){var on=m.classList.contains(b.dataset.style==='ticket'?'tix':b.dataset.style);m.setAttribute('aria-hidden',String(!on));var im=m.querySelector('img');if(im&&on&&!im.alt)im.alt='A Lore card in the '+b.textContent+' style';});});});
+ /* Passport: every stamp says what it is for. */
+ var ppn=document.getElementById('pp-next');
+ document.querySelectorAll('.pp-slot').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('.pp-slot').forEach(function(o){o.classList.toggle('sel',o===b);});
+  ppn.innerHTML='<b>'+(b.dataset.earned?'Earned: ':'Still to earn: ')+b.dataset.label+'.</b> '+b.dataset.hint;});});
+ var turn=document.getElementById('turnword'),burstHost=document.getElementById('burst');
+ if(turn&&!reduced.matches){
+  var words=['people','plan','lore'],wi=0;
+  var SCRAP_INK=['#B8A1FF','#5B3BC4','#C4B2FF'];
+  var burst=function(){
+   if(!burstHost||root.dataset.motion==='off')return;
+   burstHost.innerHTML='';
+   for(var i=0;i<14;i++){
+    var sc=document.createElement('span');sc.className='scrap';
+    var a=(i/14)*6.283,r=72+((i*53)%64);
+    sc.style.setProperty('--dx',(Math.cos(a)*r).toFixed(0)+'px');
+    sc.style.setProperty('--dy',(Math.sin(a)*r*0.72-34).toFixed(0)+'px');
+    sc.style.setProperty('--rz',(((i*83)%150)-75)+'deg');
+    sc.style.background=SCRAP_INK[i%3];
+    sc.style.animationDelay=(i*0.014)+'s';
+    burstHost.appendChild(sc);
+   }
+   setTimeout(function(){if(burstHost)burstHost.innerHTML='';},950);
+  };
+  var setWord=function(w){
+   var crazy=w==='lore';
+   turn.textContent='';
+   for(var i=0;i<w.length;i++){
+    var s=document.createElement('i');s.textContent=w[i];
+    s.style.animationDelay=(i*(crazy?0.085:0.045)).toFixed(3)+'s';
+    turn.appendChild(s);
+   }
+   turn.classList.toggle('lorefx',crazy);
+   if(crazy)burst();
+  };
+  var loop=function(){
+   if(root.dataset.motion==='off'){setTimeout(loop,2600);return;}
+   wi=(wi+1)%words.length;
+   var w=words[wi];
+   turn.classList.add('out');
+   setTimeout(function(){turn.classList.remove('out');setWord(w);},230);
+   setTimeout(loop,w==='lore'?4800:2600);
+  };
+  setWord('people');
+  setTimeout(loop,2600);
+ }
+})();
+</script></body></html>
